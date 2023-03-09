@@ -1,0 +1,31 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "L2Updater.Common/1.0.0": {
+        "runtime": {
+          "L2Updater.Common.dll": {}
+        },
+        "resources": {
+          "en/L2Updater.Common.resources.dll": {
+            "locale": "en"
+          },
+          "pt/L2Updater.Common.resources.dll": {
+            "locale": "pt"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "L2Updater.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

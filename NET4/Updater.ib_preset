@@ -1,0 +1,1 @@
+<Presets><Preset Name="Updater Lineage2Shield" FormatVersion="1"><Configuration Name="Debug|Any CPU"><Project Name="ClientUpdater" RelativePath="ClientUpdater\ClientUpdater.csproj" MSBuildName="ClientUpdater"/><Project Name="PatchGenerator" RelativePath="PatchGenerator\PatchGenerator.csproj" MSBuildName="PatchGenerator"/></Configuration></Preset></Presets>

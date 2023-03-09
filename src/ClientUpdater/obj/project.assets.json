@@ -1,0 +1,163 @@
+{
+  "version": 3,
+  "targets": {
+    "net6.0-windows7.0": {
+      "SevenZipSharp/0.64.0": {
+        "type": "package",
+        "compile": {
+          "lib/SevenZipSharp.dll": {}
+        },
+        "runtime": {
+          "lib/SevenZipSharp.dll": {}
+        }
+      },
+      "SevenZipSharp.Interop/19.0.2": {
+        "type": "package",
+        "dependencies": {
+          "SevenZipSharp": "0.64.0"
+        },
+        "build": {
+          "build/SevenZipSharp.Interop.targets": {}
+        }
+      },
+      "L2Updater.Common/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/L2Updater.Common.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/L2Updater.Common.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SevenZipSharp/0.64.0": {
+      "sha512": "CbjNb+ZcJWzoRM4uA+UXEklUwu2Fm+zbo6FNB8emaQFpJUlliwTDVl4vs6/PbFiGygRMvv30yKwCMVZJeMx4KA==",
+      "type": "package",
+      "path": "sevenzipsharp/0.64.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/SevenZipSharp.dll",
+        "sevenzipsharp.0.64.0.nupkg.sha512",
+        "sevenzipsharp.nuspec"
+      ]
+    },
+    "SevenZipSharp.Interop/19.0.2": {
+      "sha512": "oBirjJQcbrgiJ02U71Q5EWcEkyiwObOatv7S6K43CcZR8m0BAD6EDrr7OqsbR1gYw9S11ozLKknM8di+6wd8Mg==",
+      "type": "package",
+      "path": "sevenzipsharp.interop/19.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "build/SevenZipSharp.Interop.targets",
+        "build/x64/7z.dll",
+        "build/x86/7z.dll",
+        "sevenzipsharp.interop.19.0.2.nupkg.sha512",
+        "sevenzipsharp.interop.nuspec"
+      ]
+    },
+    "L2Updater.Common/1.0.0": {
+      "type": "project",
+      "path": "../L2Updater.Common/L2Updater.Common.csproj",
+      "msbuildProject": "../L2Updater.Common/L2Updater.Common.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net6.0-windows7.0": [
+      "L2Updater.Common >= 1.0.0",
+      "SevenZipSharp.Interop >= 19.0.2"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\osnip\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "E:\\Projetos\\CSharp\\WinFormsApp1\\WinFormsApp1\\ClientUpdater.csproj",
+      "projectName": "ClientUpdater",
+      "projectPath": "E:\\Projetos\\CSharp\\WinFormsApp1\\WinFormsApp1\\ClientUpdater.csproj",
+      "packagesPath": "C:\\Users\\osnip\\.nuget\\packages\\",
+      "outputPath": "E:\\Projetos\\CSharp\\WinFormsApp1\\WinFormsApp1\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\osnip\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net6.0-windows"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "projectReferences": {
+            "E:\\Projetos\\CSharp\\WinFormsApp1\\L2Updater.Common\\L2Updater.Common.csproj": {
+              "projectPath": "E:\\Projetos\\CSharp\\WinFormsApp1\\L2Updater.Common\\L2Updater.Common.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net6.0-windows7.0": {
+        "targetAlias": "net6.0-windows",
+        "dependencies": {
+          "SevenZipSharp.Interop": {
+            "target": "Package",
+            "version": "[19.0.2, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WindowsForms": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "O pacote 'SevenZipSharp 0.64.0' foi restaurado usando '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' em vez da estrutura de destino do projeto 'net6.0-windows7.0'. Esse pacote pode não ser totalmente compatível com o seu projeto.",
+      "libraryId": "SevenZipSharp",
+      "targetGraphs": [
+        "net6.0-windows7.0"
+      ]
+    }
+  ]
+}

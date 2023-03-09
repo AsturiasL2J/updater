@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)sevenzipsharp.interop\19.0.2\build\SevenZipSharp.Interop.targets" Condition="Exists('$(NuGetPackageRoot)sevenzipsharp.interop\19.0.2\build\SevenZipSharp.Interop.targets')" />
+  </ImportGroup>
+</Project>

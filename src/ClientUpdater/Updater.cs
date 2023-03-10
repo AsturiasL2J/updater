@@ -169,9 +169,9 @@ public partial class Updater : Form
             }
             Invoke((MethodInvoker)delegate
             {
-                SpeedLable.Text = "";
-                percentLable.Text = "";
-                StatusLable.Text = string.Format(AppMessages.CheckingFiles, totalFilesProcessed, totalFilesToBeProcessed);
+                labelSpeed.Text = "";
+                labelPercent.Text = "";
+                labelStatus.Text = string.Format(AppMessages.CheckingFiles, totalFilesProcessed, totalFilesToBeProcessed);
             });
             var localPathToCheck = currentDirectory + fileDataArray[1];
             var pathToDownload = updatesDirectory + fileDataArray[1] + ".7z";
@@ -179,7 +179,7 @@ public partial class Updater : Form
             {
                 Invoke((MethodInvoker)delegate
                 {
-                    StatusLable.Text = "Baixando " + FileNameFromPath(localPathToCheck);
+                    labelStatus.Text = "Baixando " + FileNameFromPath(localPathToCheck);
                 });
                 Directory.CreateDirectory(Path.GetDirectoryName(pathToDownload)!);
                 try
@@ -218,8 +218,8 @@ public partial class Updater : Form
                             // Make progress on the progress bar
                             CurrentProgBar.Width = Convert.ToInt32(Math.Round(PercentProgress / 100.0 * 446.0));
                             // Display the current progress on the form
-                            percentLable.Text = PercentProgress + "%";
-                            SpeedLable.Text = (Convert.ToDouble(fileStream.Length) / 1024 / sw.Elapsed.TotalSeconds).ToString("0.00") + " kb/s";
+                            labelPercent.Text = PercentProgress + "%";
+                            labelSpeed.Text = (Convert.ToDouble(fileStream.Length) / 1024 / sw.Elapsed.TotalSeconds).ToString("0.00") + " kb/s";
                         });
                     }
                 }
@@ -263,16 +263,16 @@ public partial class Updater : Form
         EnableStartGameButton();
         if (e.Cancelled == true)
         {
-            StatusLable.Text = "Verificação de arquivos encerrado manualmente";
+            labelStatus.Text = "Verificação de arquivos encerrado manualmente";
         }
         else if (e.Error != null)
         {
-            StatusLable.Text = e.Error.Message;
+            labelStatus.Text = e.Error.Message;
             MessageBox.Show(e.Error.Message, "Updater Lineage2Shield", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         else
         {
-            StatusLable.Text = "Todos os arquivos estão atualizados, bom jogo!";
+            labelStatus.Text = "Todos os arquivos estão atualizados, bom jogo!";
         }
         clearDirectory(updatesDirectory);
     }
@@ -355,12 +355,12 @@ public partial class Updater : Form
 
     private void ResetUIElements()
     {
-        StatusLable.Text = "";
+        labelStatus.Text = "";
         DisableStopButton();
         EnableFullCheckButton();
-        SpeedLable.Text = "";
-        percentLable.Text = "";
-        TotalLable.Text = "";
+        labelSpeed.Text = "";
+        labelPercent.Text = "";
+        labelTotal.Text = "";
         TotalProgBar.Width = 446;
         CurrentProgBar.Width = 446;
     }
@@ -381,7 +381,7 @@ public partial class Updater : Form
                 file.Delete();
             foreach (var dir in di.GetDirectories())
                 dir.Delete(true);
-            
+
         }
         catch (Exception ex)
         {
@@ -453,10 +453,10 @@ public partial class Updater : Form
     {
         if (Directory.Exists(updatesDirectory))
             clearDirectory(updatesDirectory);
-        else        
+        else
             Directory.CreateDirectory(updatesDirectory);
-        
-        StatusLable.Text = "Iniciando Full Check...";
+
+        labelStatus.Text = "Iniciando Full Check...";
         totalFilesProcessed = 0;
         totalFilesToBeProcessed = 0;
         DisableFullCheckButton();
@@ -471,7 +471,7 @@ public partial class Updater : Form
             clearDirectory(updatesDirectory);
         else
             Directory.CreateDirectory(updatesDirectory);
-        StatusLable.Text = "Checando a versão do patch...";
+        labelStatus.Text = "Checando a versão do patch...";
         EnableStopButton();
         Task.Run(() => DownloadFile("patch.ini", Path.Combine(updatesDirectory, "patch.ini"), OnDownloadProgressChanged, OnIniDownloadCompleted));
     }
@@ -487,7 +487,7 @@ public partial class Updater : Form
         using (var httpClient = new HttpClientDownloadWithProgress(url, location))
         {
             httpClient.ProgressChanged += (total, downloaded, percent)
-                => downloadProgressCallback(total, downloaded, percent);            
+                => downloadProgressCallback(total, downloaded, percent);
 
             // Start the stopwatch which we will be using to calculate the download speed
             sw.Start();
@@ -500,7 +500,7 @@ public partial class Updater : Form
             }
             catch (Exception ex)
             {
-                StatusLable.Text = ex.Message;
+                labelStatus.Text = ex.Message;
             }
         }
         IsBusy = false;
@@ -510,13 +510,13 @@ public partial class Updater : Form
     private void OnDownloadProgressChanged(long? total, long downloaded, double? percentage)
     {
         // Calculate download speed and output it to labelSpeed.
-        SpeedLable.Text = string.Format("{0} kb/s", (downloaded / 1024d / sw.Elapsed.TotalSeconds).ToString("0.00"));
+        labelSpeed.Text = string.Format("{0} kb/s", (downloaded / 1024d / sw.Elapsed.TotalSeconds).ToString("0.00"));
 
         // Update the progressbar percentage only when the value is not the same.
         CurrentProgBar.Width = Convert.ToInt32(Math.Round(percentage!.Value / 100.0 * 446.0));
 
         // Show the percentage on our label.
-        percentLable.Text = percentage.ToString() + "%";
+        labelPercent.Text = percentage.ToString() + "%";
 
         // Update the label with how much data have been downloaded so far and the total size of the file we are currently downloading
         /**labelDownloaded.Text = string.Format("{0} MB's / {1} MB's",
@@ -580,17 +580,17 @@ public partial class Updater : Form
         DisableStopButton();
         EnableFullCheckButton();
         DisableStartGameButton();
-        SpeedLable.Text = "";
-        percentLable.Text = "";
+        labelSpeed.Text = "";
+        labelPercent.Text = "";
         if (e.Cancelled == true)
         {
             EnableStartGameButton();
-            StatusLable.Text = AppMessages.PatchingProcessCanceled;
+            labelStatus.Text = AppMessages.PatchingProcessCanceled;
         }
         else if (e.Error != null)
         {
             EnableStartGameButton();
-            StatusLable.Text = e.Error.Message;
+            labelStatus.Text = e.Error.Message;
             MessageBox.Show(e.Error.Message, AppMessages.UpdaterAppTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         else
@@ -608,17 +608,17 @@ public partial class Updater : Form
         sw.Reset();
         DisableStopButton();
         DisableStartGameButton();
-        SpeedLable.Text = "";
-        percentLable.Text = "";
+        labelSpeed.Text = "";
+        labelPercent.Text = "";
         if (e.Cancelled == true)
         {
             EnableStartGameButton();
-            StatusLable.Text = AppMessages.VersionCheckedStoppedManually;
+            labelStatus.Text = AppMessages.VersionCheckedStoppedManually;
         }
         else if (e.Error != null)
         {
             EnableStartGameButton();
-            StatusLable.Text = e.Error.Message;
+            labelStatus.Text = e.Error.Message;
             MessageBox.Show(e.Error.Message, AppMessages.UpdaterAppTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         else
@@ -630,7 +630,7 @@ public partial class Updater : Form
     private void BulkFileProcess()
     {
         totalFilesToBeProcessed = fileProcessQueue.Count;
-        StatusLable.Text = string.Format(AppMessages.TotalFilesProcessed, totalFilesProcessed);
+        labelStatus.Text = string.Format(AppMessages.TotalFilesProcessed, totalFilesProcessed);
         DisableFullCheckButton();
         DisableStartGameButton();
         EnableStopButton();
